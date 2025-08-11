@@ -5,8 +5,8 @@
   "scripts": {
     "dev:web": "pnpm --filter web dev",
     "build:web": "pnpm --filter web build",
-    "dev:api": "mvn -q -f apps/tes/pom.xml spring-boot:run",
-    "dev:db": "docker compose -f infra/docker-compose.yml up -d",
+    "dev:api": "mvn -q -f apps/api/monitor/pom.xml spring-boot:run",
+    "dev:db": "docker-compose -f infra/docker-compose.yml up -d",
     "dev": "concurrently -n WEB,API,DB -c auto \"pnpm dev:web\" \"pnpm dev:api\" \"pnpm dev:db\""
   },
   "devDependencies": {
