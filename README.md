@@ -7,6 +7,27 @@ Painel para acompanhar **vendas do dia** e **status de documentos fiscais** (NF-
 - Alertar rapidamente sobre **rejeições** e problemas de emissão.
 - Arquitetura simples, modular e pronta para integrações.
 
+## Como rodar localmente
+
+### Pré-requisitos
+- Node.js 18+
+- Java 21+
+- Docker (para banco PostgreSQL)
+
+### 1. Configuração de ambiente
+Edite os arquivos `.env` em:
+- `apps/web`:
+- `infra`;
+
+### 2. Para executar o projeto
+```sh
+pnpm run dev
+```
+- O backend estará em http://localhost:8080
+
+- O frontend estará em http://localhost:3000
+
+
 ## Stack
 - Frontend: Next.js + Tailwind
 - Backend: Java 21 + Spring Boot
