@@ -2,7 +2,6 @@ package com.nlphd.monitor.sales.infrastructure;
 
 import com.nlphd.monitor.sales.domain.SalesOrder;
 import com.nlphd.monitor.sales.domain.SalesOrderRepository;
-import java.awt.print.Pageable;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +14,7 @@ public class SalesOrderRepositoryImpl implements SalesOrderRepository {
 
   @Override
   public List<SalesOrder> findRecent(int limit) {
-    return jpa.findRecent((Pageable) PageRequest.of(0, Math.max(1, limit)))
+    return jpa.findRecent(PageRequest.of(0, Math.max(1, limit)))
         .stream()
         .map(e -> SalesOrder.builder()
             .id(e.getId())
