@@ -1,0 +1,18 @@
+# Node / PNPM
+node_modules
+.pnp*
+pnpm-lock.yaml
+
+# Java / Maven
+target/
+*.iml
+.idea/
+.project
+.classpath
+.settings/
+
+# macOS
+.DS_Store
+
+# Docker
+infra/pgdata
