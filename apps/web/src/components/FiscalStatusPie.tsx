@@ -38,7 +38,7 @@ export default function FiscalStatusPie() {
     if (!data) return [];
     return [
       { name: "Autorizado", value: data.fiscal.autorizado ?? 0 },
-      { name: "Em processamento", value: data.fiscal.em_processamento ?? 0 },
+      { name: "Em processamento", value: data.fiscal.processando ?? 0 },
       { name: "Rejeitado", value: data.fiscal.rejeitado ?? 0 },
     ];
   }, [data]);
