@@ -109,3 +109,25 @@ As flags ficam no `application.properties` (valores padrão pensados para dev):
 app.simulation.enabled=true
 app.simulation.delay=15s
 app.simulation.initial-delay=3s
+```
+----
+
+## Simulador de vendas (dev)
+
+Para alimentar as métricas diárias, o backend possui um **simulador** que cria pedidos periodicamente.
+
+**Comportamento**
+- A cada *tick*, cria de **1 a 3 pedidos** (`SalesOrder`) com valores aleatórios.
+- O campo `createdAt` é preenchido automaticamente no `@PrePersist`.
+- Impacta diretamente o **/metrics/overview** (campos `sales.count` e `sales.total`) e a listagem **/sales**.
+
+**Endpoints impactados**
+- `GET /metrics/overview` — `sales.count` e `sales.total` variam com o tempo.
+- `GET /sales?limit=10` — lista os pedidos mais recentes.
+
+### Configuração
+As flags ficam no `application.properties`:
+```properties
+app.sales.simulation.enabled=true
+app.sales.simulation.delay=5s
+app.sales.simulation.initial-delay=3s
