@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SalesOrderRepository {
-  List<SalesOrder> findAll(int limit);
+  List<SalesOrder> findRecent(int limit);
 }
