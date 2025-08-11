@@ -16,3 +16,5 @@ target/
 
 # Docker
 infra/pgdata
+
+.env
