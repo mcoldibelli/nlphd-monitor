@@ -83,8 +83,29 @@ Retorna um **resumo do dia** com métricas consolidadas de vendas e documentos f
     "total": 2450.30
   },
   "fiscal": {
-    "em_processamento": 3,
+    "processando": 3,
     "autorizado": 9,
     "rejeitado": 2
   }
 }
+```
+
+## Simulador de status fiscal (dev)
+
+Para demonstrar o comportamento “quase em tempo real”, o backend possui um **simulador** que:
+- Cria documentos fiscais `PROCESSANDO` quando a base está vazia.
+- A cada *tick* promove até **5** documentos para:
+  - `AUTORIZADO` (≈85%, gera `protocol`)
+  - `REJEITADO` (≈15%, preenche `rejectionReason`)
+- Ocasionalmente cria **novos** itens `PROCESSANDO` para manter a fila viva.
+
+**Endpoints impactados**
+- `GET /fiscal/docs` — você verá os itens mudando de status ao atualizar.
+- `GET /metrics/overview` — contadores de `AUTORIZADO`, `REJEITADO` e `PROCESSANDO` variam com o tempo.
+
+### Configuração
+As flags ficam no `application.properties` (valores padrão pensados para dev):
+```properties
+app.simulation.enabled=true
+app.simulation.delay=15s
+app.simulation.initial-delay=3s
