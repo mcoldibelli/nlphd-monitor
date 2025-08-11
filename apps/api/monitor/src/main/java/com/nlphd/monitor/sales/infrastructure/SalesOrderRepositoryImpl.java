@@ -2,6 +2,8 @@ package com.nlphd.monitor.sales.infrastructure;
 
 import com.nlphd.monitor.sales.domain.SalesOrder;
 import com.nlphd.monitor.sales.domain.SalesOrderRepository;
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -23,5 +25,15 @@ public class SalesOrderRepositoryImpl implements SalesOrderRepository {
             .createdAt(e.getCreatedAt())
             .build())
         .toList();
+  }
+
+  @Override
+  public long countBetween(OffsetDateTime start, OffsetDateTime end) {
+    return jpa.countByCreatedAtBetween(start, end);
+  }
+
+  @Override
+  public BigDecimal sumBetween(OffsetDateTime start, OffsetDateTime end) {
+    return jpa.sumTotalBetween(start, end);
   }
 }

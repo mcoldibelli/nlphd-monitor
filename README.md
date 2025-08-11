@@ -62,3 +62,29 @@ Lista documentos fiscais recentes (ordenados por updatedAt desc).
   "size": 5,
   "totalElements": 15
 }
+```
+
+### Endpoints — Metrics
+`GET /metrics/overview`  
+Retorna um **resumo do dia** com métricas consolidadas de vendas e documentos fiscais.
+
+**Propósito**
+- Exibir no dashboard a visão rápida do dia atual: total de vendas, quantidade de pedidos e contagem de documentos por status.
+
+**Janela temporal**
+- Considera **o dia atual em UTC** (`00:00:00` até `23:59:59` UTC).  
+
+**Resposta (200)**
+```json
+{
+  "date": "2025-08-11",
+  "sales": {
+    "count": 8,
+    "total": 2450.30
+  },
+  "fiscal": {
+    "em_processamento": 3,
+    "autorizado": 9,
+    "rejeitado": 2
+  }
+}
