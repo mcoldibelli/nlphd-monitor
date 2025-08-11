@@ -1,0 +1,15 @@
+{
+  "name": "nlphd-monitor",
+  "private": true,
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "build:web": "pnpm --filter web build",
+    "dev:api": "mvn -q -f apps/api/pom.xml spring-boot:run",
+    "dev:db": "docker compose -f infra/docker-compose.yml up -d",
+    "dev": "concurrently -n WEB,API,DB -c auto \"pnpm dev:web\" \"pnpm dev:api\" \"pnpm dev:db\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
